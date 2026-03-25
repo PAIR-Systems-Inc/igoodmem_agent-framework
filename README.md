@@ -1,27 +1,41 @@
-![Microsoft Agent Framework](docs/assets/readme-banner.png)
+<div align="center">
 
-# Welcome to Microsoft Agent Framework!
+<img src="https://goodmem.ai/assets/goodmem-g-blue-VvWv6-me.png" alt="GoodMem Logo" width="75">&nbsp;&nbsp;&nbsp;**X**<img src="docs/assets/Agentic-framework_high-res.png" alt="Agent Framework Logo" width="95">
 
-[![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/b5zjErwbQM?style=flat)](https://discord.gg/b5zjErwbQM)
-[![MS Learn Documentation](https://img.shields.io/badge/MS%20Learn-Documentation-blue)](https://learn.microsoft.com/en-us/agent-framework/)
 [![PyPI](https://img.shields.io/pypi/v/agent-framework)](https://pypi.org/project/agent-framework/)
 [![NuGet](https://img.shields.io/nuget/v/Microsoft.Agents.AI)](https://www.nuget.org/profiles/MicrosoftAgentFramework/)
 
-Welcome to Microsoft's comprehensive multi-language framework for building, orchestrating, and deploying AI agents with support for both .NET and Python implementations. This framework provides everything from simple chat agents to complex multi-agent workflows with graph-based orchestration.
+</div>
 
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=AAgdMhftj8w" title="Watch the full Agent Framework introduction (30 min)">
-    <img src="https://img.youtube.com/vi/AAgdMhftj8w/hqdefault.jpg"
-         alt="Watch the full Agent Framework introduction (30 min)" width="480">
-  </a>
-</p>
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=AAgdMhftj8w">
-    Watch the full Agent Framework introduction (30 min)
-  </a>
-</p>
+# GoodMem × Agent Framework
 
-## 📋 Getting Started
+**[GoodMem](https://goodmem.ai)** integration for **[Agent Framework](https://github.com/microsoft/agent-framework)**: persistent semantic memory for agentic AI applications.
+
+This fork adds the GoodMem memory infrastructure to Agent Framework to allow AI agents to reliably and efficiently reason over short-term and long-term memories.
+
+This powers everything in between chat agents and multi agent workflows.
+
+
+## Overview
+
+**GoodMem** is a context platform for AI agents. It enables efficient storage, retrieval, updates, and semantic searches of agentic "memories".
+
+**AutoGen** is a framework for creating multi-agent AI applications that can act autonomously or work alongside humans.
+
+## Initialize GoodMem × Agent Framework
+
+- Initialize GoodMem (if not done already)
+- `curl -s "https://get.goodmem.ai" | bash`
+- Set an embedder id in GoodMem: [quickstart doc](https://docs.goodmem.ai/docs/get-started/nextsteps/)
+- install dependencies:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -e ./python/packages/goodmem
+```
+- Write your own agents and reference GoodMem's functions for easy memory storage, access, and reasoning.
+
+## 📋 Getting Started with Agent Framework
 
 ### 📦 Installation
 
