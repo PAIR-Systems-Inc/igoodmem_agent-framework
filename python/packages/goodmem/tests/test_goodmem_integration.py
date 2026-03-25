@@ -40,7 +40,7 @@ def event_loop():
 
 @pytest.fixture(scope="module")
 async def client():
-    c = GoodMemClient(base_url=GOODMEM_BASE_URL, api_key=GOODMEM_API_KEY)
+    c = GoodMemClient(base_url=GOODMEM_BASE_URL, api_key=GOODMEM_API_KEY, verify_ssl=False)
     yield c
     await c.close()
 
@@ -59,7 +59,12 @@ class TestGoodMemIntegration:
         """Create a new space (or reuse existing) and store its ID for later tests."""
         embedders = await client.list_embedders()
         assert len(embedders) > 0, "No embedders available on the GoodMem server"
-        embedder_id = embedders[0].get("embedderId") or embedders[0].get("id")
+        # Prefer the Voyage AI embedder (reliable local-friendly) over OpenAI (requires API key).
+        preferred = next(
+            (e for e in embedders if "voyage" in (e.get("displayName") or "").lower()),
+            embedders[-1],  # fallback: last embedder (likely local)
+        )
+        embedder_id = preferred.get("embedderId") or preferred.get("id")
         assert embedder_id, "Could not extract embedder ID"
 
         result = await client.create_space(name="autogen-integration-test", embedder_id=embedder_id)

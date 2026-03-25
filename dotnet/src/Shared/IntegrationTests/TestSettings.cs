@@ -25,6 +25,11 @@ internal static class TestSettings
     public const string CopilotStudioDirectConnectUrl = "COPILOTSTUDIO_DIRECT_CONNECT_URL";
     public const string CopilotStudioTenantId = "COPILOTSTUDIO_TENANT_ID";
 
+    // GoodMem
+    public const string GoodMemApiKey = "GOODMEM_API_KEY";
+    public const string GoodMemEndpoint = "GOODMEM_ENDPOINT";
+    public const string GoodMemSpaceId = "GOODMEM_SPACE_ID";
+
     // Mem0
     public const string Mem0ApiKey = "MEM0_API_KEY";
     public const string Mem0Endpoint = "MEM0_ENDPOINT";

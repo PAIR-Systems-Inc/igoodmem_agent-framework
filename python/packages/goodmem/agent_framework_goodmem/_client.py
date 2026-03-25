@@ -55,7 +55,7 @@ class GoodMemClient:
         api_key: API key used for ``X-API-Key`` authentication.
     """
 
-    def __init__(self, base_url: str, api_key: str) -> None:
+    def __init__(self, base_url: str, api_key: str, *, verify_ssl: bool = True) -> None:
         self._base_url = base_url.rstrip("/")
         self._api_key = api_key
         self._http = httpx.AsyncClient(
@@ -65,7 +65,7 @@ class GoodMemClient:
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-            verify=False,
+            verify=verify_ssl,
             timeout=httpx.Timeout(60.0),
         )
 
@@ -245,8 +245,8 @@ class GoodMemClient:
                 "config": config,
             }
 
-        max_wait = 60.0
-        poll_interval = 5.0
+        max_wait = 60.0 if wait_for_indexing else 0.0
+        poll_interval = 0.5
         should_wait = wait_for_indexing
         start = time.monotonic()
 
