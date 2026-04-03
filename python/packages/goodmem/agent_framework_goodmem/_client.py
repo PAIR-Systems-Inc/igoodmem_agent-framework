@@ -96,11 +96,15 @@ class GoodMemClient:
         spaces = await self.list_spaces()
         for space in spaces:
             if space.get("name") == name:
+                actual_embedder_id = embedder_id
+                space_embedders = space.get("spaceEmbedders", [])
+                if space_embedders:
+                    actual_embedder_id = space_embedders[0].get("embedderId", embedder_id)
                 return {
                     "success": True,
                     "spaceId": space["spaceId"],
                     "name": space["name"],
-                    "embedderId": embedder_id,
+                    "embedderId": actual_embedder_id,
                     "message": "Space already exists, reusing existing space",
                     "reused": True,
                 }
@@ -245,8 +249,8 @@ class GoodMemClient:
                 "config": config,
             }
 
-        max_wait = 60.0 if wait_for_indexing else 0.0
-        poll_interval = 0.5
+        max_wait = 10.0 if wait_for_indexing else 0.0
+        poll_interval = 2.0
         should_wait = wait_for_indexing
         start = time.monotonic()
 
